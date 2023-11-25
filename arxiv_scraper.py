@@ -83,6 +83,11 @@ def get_papers_from_arxiv_rss(area: str, config: Optional[dict]) -> Tuple[List[P
         return [], None, None
     # get the list of entries
     entries = feed.entries
+
+    if not feed.entries:
+        print("Feed is empty.")
+        return [], None, None
+
     timestamp = datetime.strptime(
         feed.headers["last-modified"], "%a, %d %b %Y %H:%M:%S GMT"
     )
